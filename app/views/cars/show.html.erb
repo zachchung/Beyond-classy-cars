@@ -34,19 +34,7 @@
       <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
     </div>
 
-<!-- <<<<<<< HEAD -->
     <div class="card p-4 mb-3">
-<!-- =======
-    <div class="card p-3 m-2">
-      <div id="map" class="w-100"
-            style="height: 300px;"
-            data-markers="<%= @markers.to_json %>"
-            data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-    </div>
-
-    <div class="card p-3 m-2">
->>>>>>> master -->
       <h3>Reviews</h3>
       <% if @reviews.size != 0 %>
         <% @reviews.each_with_index do |review, _index| %>
@@ -68,14 +56,11 @@
       <% end %>
     </div>
 
-<!-- <<<<<<< HEAD -->
     <div id="map"
     class=""
           style="height: 300px;"
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-<!-- =======
->>>>>>> master -->
   </div>
 </div>

@@ -26,7 +26,7 @@ class CarsController < ApplicationController
     lng: @car.longitude,
     infoWindow: render_to_string(partial: "info_window", locals: { car: @car }),
     image_url: helpers.asset_url('ferrari.png')
-    }]
+    }] # need to pass an array here (coz markers.each at JS)
 
   rescue ActiveRecord::RecordNotFound => e
     redirect_to cars_path, alert: "Could not find the car you requested."
