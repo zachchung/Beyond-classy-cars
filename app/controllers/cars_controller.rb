@@ -22,7 +22,7 @@ class CarsController < ApplicationController
     @markers = markers_for_one_car(@car)
   # alert & redirect if page not found
   rescue ActiveRecord::RecordNotFound => e
-    redirect_to cars_path, alert: "Could not find the car you requested."
+    redirect_to cars_path, notice: "Could not find the car you requested."
   end
 
   def index

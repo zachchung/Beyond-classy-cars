@@ -13,7 +13,9 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to @booking
     else
-      redirect_to car_path(@booking.car), alert: @booking.errors['dates'].first
+      redirect_to car_path(@booking.car), alert: "Dates are not available!"
+      # render html: "<script>alert('Dates are not available!')</script>".html_safe
+      # redirect_to car_path(@booking.car), alert: @booking.errors['dates'].first
     end
   end
 
