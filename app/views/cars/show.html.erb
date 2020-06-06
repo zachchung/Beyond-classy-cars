@@ -1,22 +1,21 @@
-<%# raise %>
 <div class="row justify-content-between">
-  <div class="col-12 col-lg-8">
-    <div class="card p-3 mt-3 mb-3">
+  <div class="col-12 col-lg-8 mt-3 mb-3 p-3 card">
+    <div class="">
       <% defined?(@car).nil? ? car = @booking.car : car = @car  %>
 
-      <h1 class="mt-3 mb-5 font-weight-bold text-center"><%= car.name %></h1>
+      <h1 class="mt-3 mb-3 font-weight-bold text-center"><%= car.name %></h1>
 
-      <div class="product offset-lg-1 col-lg-10 pb-4">
+      <div class="product mx-auto col-lg-10 pb-3"> <%# Horizontal centering!!!! %>
         <%= render 'components/photo_carousel', car: car %>
       </div>
 
-      <div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-3">
+      <div class="col-lg-10 mx-auto"> <%# 10/12 wide & Horizontal centering!!!! %>
         <div>
           <p class="text-muted">Location</p>
           <h5><%= car.location %></h5>
 
           <p class="text-muted">Price per day</p>
-          <h5>AUD <%= car.price %></h5>
+          <h5>$ <span id="car_price"><%= car.price %></span></h5> <%# ID for booking.js %>
 
           <p class="text-muted">Number of seats</p>
           <h5><%= pluralize(car.seats, "seat") %></h5>
@@ -28,10 +27,11 @@
     </div>
   </div>
 
-  <div class="col-12 col-lg-4">
-    <div class="card p-4 mt-3 mb-3">
+  <div class="col-12 col-lg-4 mt-3 mb-3">
+    <div class="card p-4 mb-3">
       <h3>Book Now</h3>
       <%= render partial: 'bookings/form', locals: {car: car, booking: @booking}  %>
+      <div id="book_now"></div> <%# ID for booking.js %>
     </div>
 
     <div class="card p-4 mb-3">
@@ -64,3 +64,5 @@
     </div>
   </div>
 </div>
+
+<%= javascript_pack_tag 'booking' %>

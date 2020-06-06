@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :booking_set, only: [:show, :modify]
-  
+
   def new
     @booking = Booking.new
   end
