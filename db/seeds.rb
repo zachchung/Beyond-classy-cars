@@ -5,7 +5,7 @@ puts "--- Starting populating database"
 suburbs = %w[Westwood Santa\ Monica Manhattan\ Beach Torrance Glendale Pasadena downtown Gardena Culver\ City Redondo\ Beach Alhambra Monterey\ Park Burbank];
 # suburbs = %w[Brunswick Melbourne South\ Yarra Docklands South\ Melbourne Footscray Richmond Fitzroy Carlton Collingwood St\ Kilda Kensington windsor malvern hawthorn];
 
-booking_status = %w[confirmed cancelled returned renting]
+booking_status = %w[confirmed cancelled returned]
 
 # Sample Users
 puts "--- Generate User"

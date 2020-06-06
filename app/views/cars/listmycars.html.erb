@@ -1,14 +1,14 @@
-<div class="d-flex justify-content-between align-items-center py-5 px-3">
+<div class="d-flex justify-content-between align-items-center">
   <h1 class="my-3">My cars</h1>
   <%= link_to "Add car", new_car_path, class: "btn btn-lg btn-primary" %>
 </div>
 
 <% @cars.each do |car| %>
 <div class="card w-100 mb-4">
-  <div class="card-header d-flex justify-content-between flex-column flex-md-row">
+  <div class="card-header d-flex justify-content-between flex-column flex-md-row  bg-light"> <%# background color %>
     <div class="flex-grow-1 py-2">
       <h2 class="mb-2"><%= link_to car.name, car_path(car) %></h2>
-      <h6 class="mb-2 card-subtitle font-weight-bold">AUD <%= car.price %></h6>
+      <h6 class="mb-2 card-subtitle font-weight-bold">$ <%= car.price %></h6>
       <h6 class="mb-2 card-subtitle text-muted"><%= car.location %></h6>
       <h6 class="mb-2"><%= rating_as_stars(car.average_rating) %> (<%= car.average_rating %>)</h6>
     </div>
