@@ -19,7 +19,8 @@
     </div>
   </div>
   <div class="card-body table-responsive">
-    <%= render partial: "bookings/pending_bookings", locals: {bookings: car.pending_bookings} %>
+    <%= render partial: "bookings/pending_bookings", locals: {bookings: car.bookings} %> <%# show all bookings %>
+    <%#= render partial: "bookings/pending_bookings", locals: {bookings: car.pending_bookings} %> <%# show only pending bookings %>
   </div>
 </div>
 <% end %>

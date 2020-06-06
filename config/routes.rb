@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   end
   patch '/booking/:id', to: 'bookings#modify', as: :modify_booking
 
-  get "cars/search", to: "cars#search"
-  get "/users", to: redirect("/404")
+  # get "cars/search", to: "cars#search"
+  # get "/users", to: redirect("/404")
 end
 
 # BELOW ROUTES GENERATED:
