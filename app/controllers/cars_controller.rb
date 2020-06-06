@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: :index # no need login on /cars page
 
   def new
     @car = Car.new
@@ -8,11 +8,9 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-
     if @car.save
       redirect_to car_path(@car)
     else
-
       render :new
     end
   end
@@ -21,13 +19,8 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     @booking = Booking.new
     @reviews = @car.reviews
-    @markers = [{
-    lat: @car.latitude,
-    lng: @car.longitude,
-    infoWindow: render_to_string(partial: "info_window", locals: { car: @car }),
-    image_url: helpers.asset_url('ferrari.png')
-    }] # need to pass an array here (coz markers.each at JS)
-
+    @markers = markers_for_one_car(@car)
+  # alert & redirect if page not found
   rescue ActiveRecord::RecordNotFound => e
     redirect_to cars_path, alert: "Could not find the car you requested."
   end
@@ -41,14 +34,7 @@ class CarsController < ApplicationController
       @cars = @geocoded_cars
     end
 
-    @markers = @cars.map do |car|
-      {
-        lat: car.latitude,
-        lng: car.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
-        image_url: helpers.asset_url('ferrari.png')
-      }
-    end
+    @markers = markers_for_many_cars(@cars)
   end
 
   def destroy
@@ -76,8 +62,27 @@ class CarsController < ApplicationController
     @cars = current_user.cars
   end
 
-
   private
+
+  def markers_for_many_cars(cars)
+    cars.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
+        image_url: helpers.asset_url('ferrari.png')
+      }
+    end
+  end
+
+  def markers_for_one_car(car)
+    [{
+      lat: car.latitude,
+      lng: car.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
+      image_url: helpers.asset_url('ferrari.png')
+    }] # need to pass an array [] here (coz markers.each at JS)!!!!
+  end
 
   def car_params
     params.require(:car).permit(:name, :location, :seats, :year, :price, photos: [])

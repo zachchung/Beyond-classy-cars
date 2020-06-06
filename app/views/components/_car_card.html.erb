@@ -7,7 +7,7 @@
       <%= link_to car_path(car), class: "link-block" do %>
       <div class="card-body">
         <h5 class="card-title"><%= car.name %></h5>
-        <p class="card-text">Made in <%= car.year %>, <%= car.seats %> seats</p>
+        <p class="card-text">Made in <%= car.year %>, <%= pluralize(car.seats, "seat") %></p>
       </div>
       <div class="card-bottom">
         <p id="price" class="card-text text-right"><small class="text-muted">AUD <%= car.price %> per day</small></p>

@@ -3,18 +3,17 @@ class Car < ApplicationRecord
   has_many :bookings
   has_many :reviews, through: :bookings
   has_many_attached :photos
+  validates :name, :year, :seats, :price, :location, presence: true
 
   geocoded_by :location
-
-  validates :name, :year, :seats, :price, :location, presence: true
   after_validation :geocode, if: :will_save_change_to_location?
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_location,
-  against: [ :name, :location ],
-  using: {
-  tsearch: { prefix: true } # <-- now `superman batm` wil
-  }
+    against: [:name, :location],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` wil
+    }
 
   def search_bookings_by_status(status = [])
     bookings.where(status: status)

@@ -2,7 +2,9 @@ require 'faker'
 require "open-uri"
 
 puts "--- Starting populating database"
-suburbs = %w[Brunswick Melbourne South\ Yarra Docklands South\ Melbourne Footscray Richmond Fitzroy Carlton Collingwood St\ Kilda Kensington windsor malvern hawthorn];
+suburbs = %w[Westwood Santa\ Monica Manhattan\ Beach Torrance Glendale Pasadena downtown Gardena Culver\ City Redondo\ Beach Alhambra Monterey\ Park Burbank];
+# suburbs = %w[Brunswick Melbourne South\ Yarra Docklands South\ Melbourne Footscray Richmond Fitzroy Carlton Collingwood St\ Kilda Kensington windsor malvern hawthorn];
+
 booking_status = %w[confirmed cancelled returned renting]
 
 # Sample Users
@@ -45,7 +47,7 @@ car = Car.create!(
   year: 2013,
   seats: 11,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "LAX, Los Angeles",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://vistapointe.net/images/vw-minibus-1.jpg')
@@ -60,7 +62,7 @@ car = Car.create!(
   year: 2046,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "beverly hills",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://postmediadriving.files.wordpress.com/2018/02/tumbler-batmobile-replica.jpg')
@@ -75,7 +77,7 @@ car = Car.create!(
   year: 1990,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "Hollywood, Los Angeles",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://cdn.vox-cdn.com/thumbor/WXaYJI47OmpEBPs2490y3OVQ6OM=/0x0:1920x1158/1200x800/filters:focal(612x320:918x626)/cdn.vox-cdn.com/uploads/chorus_image/image/63881293/WiiU_MK8_artwork_07__1_.0.jpg')
@@ -90,7 +92,7 @@ car = Car.create!(
   year: 2020,
   seats: 2,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "1221 W 3rd St, Los Angeles",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://image.cnbcfm.com/api/v1/image/106010244-1562708838619bencon-1.jpg?v=1562708869')
@@ -103,7 +105,7 @@ car = Car.create!(
   year: 2022,
   seats: 6,
   price: rand(50..100) + rand.floor(2),
-  location: "#{suburbs.sample}, VIC",
+  location: "staples center",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://i.insider.com/5dd85153fd9db24cee2399db?width=1065&format=jpeg')
@@ -136,7 +138,7 @@ car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
     year: rand(1900..1980),
     seats: rand(2..6),
     price: rand(50..100) + rand.floor(2),
-    location: "#{suburbs.sample}, VIC, AU"
+    location: "#{suburbs.sample}, Los Angeles"
   )
   # 1 Car always belong to 1 User, 1 User may not own a Car
   car.user = users.sample
