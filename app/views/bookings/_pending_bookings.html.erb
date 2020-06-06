@@ -8,21 +8,21 @@
   <% bookings.reverse.each do |booking| %>
   <div class="col-12 col-md-6 col-lg-4 mb-3">
     <% if booking.status == "pending" %>
-      <div class="card p-3" style="background-color: #fbc687">
+      <div class="card p-3" style="border: 4px solid #fbc687">
     <% else %>
       <div class="card p-3">
     <% end %>
-    <div class="card-body px-0">
-      <h4 class="card-title"><%= booking.user.fullname %></h4>
+    <div>
       <%= link_to "View booking", booking_path(booking), class: "text-link" %>
-      <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
-      <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
-      <div class="card-text mb-1">$ <%= booking.booking_price %></div>
-      <div class="card-text text-muted mb-1"><%= booking.status %></div>
+      <div><strong>Customer:</strong> <%= booking.user.fullname %></div>
+      <div><%= formatted_date(booking.start_date) %></div>
+      <div><%= formatted_date(booking.end_date) %></div>
+      <div>$ <%= booking.booking_price %></div>
+      <div class="card-text text-muted"><%= booking.status %></div>
     </div>
     <div class="d-flex justify-content-between">
-      <%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "w-100 mr-2 btn btn-lg text-white btn-primary" %>
-      <%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "w-100 btn btn-lg btn-outline-dark" %>
+      <%= link_to "Approve", modify_booking_path(booking, my_action: "approve"), method: :patch, class: "w-100 mr-2 btn btn-sm text-white btn-primary" %>
+      <%= link_to "Decline", modify_booking_path(booking, my_action: "decline"), method: :patch, class: "w-100 btn btn-sm btn-outline-dark" %>
     </div>
   </div>
   </div>

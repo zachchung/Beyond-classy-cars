@@ -12,9 +12,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active"><%= link_to "Home", root_path, class: "nav-link" %></li>
       <li class="nav-item"><%= link_to "Rent a car", cars_path, class: "nav-link" %></li>
-      <% if user_signed_in? %>
-        <li class="nav-item"><%= link_to "My cars", listmycars_cars_path, class: "nav-link" %></li>
+      <% if user_signed_in? %> <%# can see only if users signed in !!!!! %>
         <li class="nav-item"><%= link_to "Bookings", bookings_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "My cars", listmycars_cars_path, class: "nav-link" %></li>
 
         <li class="nav-item"><span class="nav-link font-weight-bold"><%= current_user.first_name %></span></li>
         <li class="nav-item dropdown">
