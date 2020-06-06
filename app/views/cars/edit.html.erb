@@ -1,14 +1,12 @@
-<div class="mt-4">
-  <%= link_to "< Back", :back %>
-</div>
-<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8 p-5 mb-5 mt-5 bg-white">
-  <h1>Edit car <%= @car.name %></h1>
+<div class="card p-3 col-md-10 col-lg-6 mx-auto">
+  <h1>Edit - <%= @car.name %></h1>
   <%= simple_form_for(@car) do |f| %>
-    <%= f.input :name %>
+    <%= f.input :name, label: "Car model" %>
     <%= f.input :location %>
-    <%= f.input :price %>
-    <%= f.input :seats %>
-    <%= f.input :year %>
+    <%= f.input :price, label: "Rental price/ day" %>
+    <%= f.input :seats, label: "Seat capacity" %>
+    <%= f.input :year, label: "Make year" %>
     <%= f.submit 'Update car', class: "btn btn-lg btn-primary"  %>
   <% end %>
+  <%= link_to "< Back", :back, class: "mt-3" %>
 </div>
