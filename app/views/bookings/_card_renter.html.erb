@@ -14,10 +14,11 @@
         <%= link_to "Write a review", new_booking_review_path(booking), class: "text-muted" unless show_review %>
 
       </div>
+      <div><strong>Owner:</strong> <%= booking.car.user.fullname %></div>
       <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
       <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
       <div class="card-text mb-1">$ <%= booking.booking_price %></div>
-      <div class="card-text text-muted mb-1 py-2"><%= booking.status %></div>
+      <div class="card-text text-muted mb-1 py-2"><%= booking.status %> (#<%= booking.id %>)</div>
     </div>
   </div>
   </div>

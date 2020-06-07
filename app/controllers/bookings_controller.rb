@@ -47,9 +47,9 @@ class BookingsController < ApplicationController
 
   def cancel
     if @booking.cancelled!
-      redirect_to booking_path(@booking.id), notice: "Booking ##{@booking.id} is cancelled!"
+      redirect_to bookings_path, notice: "Booking ##{@booking.id} is cancelled!"
     else
-      redirect_to booking_path(@booking.id), notice: "Sorry please try again"
+      redirect_to bookings_path, notice: "Sorry please try again"
     end
   end
 
