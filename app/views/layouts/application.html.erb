@@ -15,10 +15,10 @@
   <body>
     <%= render 'shared/navbar' %>
 
-    <% if current_page? root_path %> <%# not ==? %>
-      <div class='banner  navbar-container-m'>
+    <% if current_page? root_path %> <%# not == ? %>
+      <div class='banner navbar-container-m'>
     <% elsif current_page? cars_path %>
-      <div class='navbar-container-m col-12 col-lg-10 mx-auto'>
+      <div class='col-12 col-lg-10 mx-auto navbar-container-m'>
     <% else %>
       <div class="container navbar-container-m">
     <% end %>

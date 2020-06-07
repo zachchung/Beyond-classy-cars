@@ -14,7 +14,7 @@ user = User.create!(
   first_name: "Zach",
   last_name: "Chung",
   email: "zach@cars.com",
-  address: "Melbourne, AUS",
+  # address: "Melbourne, AUS",
   password: "123123"
   )
 
@@ -22,7 +22,7 @@ second_user = User.new(
   first_name: "Erik",
   last_name: "Tran",
   email: "erik@cars.com",
-  address: "Brunswick, Melbourne, AUS",
+  # address: "Brunswick, Melbourne, AUS",
 )
 second_user.password = "abc123"
 second_user.save!
@@ -31,7 +31,7 @@ third_user = User.new(
   first_name: "Harshil",
   last_name: "Siyani",
   email: "harshil@cars.com",
-  address: "Melbourne, AUS",
+  # address: "Melbourne, AUS",
 )
 third_user.password = "abc123"
 third_user.save!
@@ -62,7 +62,7 @@ car = Car.create!(
   year: 2046,
   seats: 1,
   price: rand(50..100) + rand.floor(2),
-  location: "beverly hills",
+  location: "Rodeo Drive, Los Angeles",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://postmediadriving.files.wordpress.com/2018/02/tumbler-batmobile-replica.jpg')
@@ -105,7 +105,7 @@ car = Car.create!(
   year: 2022,
   seats: 6,
   price: rand(50..100) + rand.floor(2),
-  location: "staples center",
+  location: "Staples Center",
   user_id: users.sample.id,
   )
 file1 = URI.open('https://i.insider.com/5dd85153fd9db24cee2399db?width=1065&format=jpeg')

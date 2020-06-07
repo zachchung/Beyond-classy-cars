@@ -3,7 +3,8 @@
   <%= f.input :end_date, as: :string, id: :end_date, required: false, input_html: { class: "datepicker" } %> <%# ID="booking_end_date" %>
   <%= f.input :car_id, as: "hidden", input_html: { value: car.id } %>
   <%= f.input :user_id, as: "hidden", input_html: { value: current_user.id } %>
-  <%#= CAN INSET HTML INSIDE SIMPLE FORM !!!!! %>
+
+  <%#= CAN INSERT HTML INSIDE SIMPLE FORM !!!!! %>
   <button class="btn btn-info mb-3" id="select_btn"> Select </button>
   <div id="book_now"></div> <%# ID for booking.js %>
 

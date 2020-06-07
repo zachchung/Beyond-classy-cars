@@ -81,7 +81,7 @@ class CarsController < ApplicationController
       lng: car.longitude,
       infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
       image_url: helpers.asset_url('ferrari.png')
-    }] # need to pass an array [] here (coz markers.each at JS)!!!!
+    }] # need to pass an array [] here (coz mapbox.js expect markers to be an array -> markers.forEach)!!!!
   end
 
   def car_params

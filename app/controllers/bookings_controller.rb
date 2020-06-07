@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :booking_set, only: [:show, :modify]
+  before_action :booking_set, only: [:show, :modify, :approve, :decline, :cancel]
 
   def new
     @booking = Booking.new
@@ -25,48 +25,45 @@ class BookingsController < ApplicationController
 
   def show
     redirect_to bookings_path, notice: "Booking is not found." unless belongs_to_user?
+    # so cannot see other user's bookings
   end
 
-  def modify
-    redirect_to listmycars_cars_path, notice: "Booking is not found." unless belongs_to_user?
+  def approve
+    # redirect_to listmycars_cars_path, notice: "Booking is not found." unless belongs_to_user?
+    if @booking.approved!
+      redirect_to listmycars_cars_path, notice: "Booking ##{@booking.id} is approved!"
+    else
+      redirect_to listmycars_cars_path, notice: "Sorry please try again"
+    end
+  end
 
-    case params[:my_action]
-    when "approve" then approve_booking(@booking)
-    when "decline" then decline_booking(@booking)
+  def decline
+    if @booking.declined!
+      redirect_to listmycars_cars_path, notice: "Booking ##{@booking.id} is declined!"
+    else
+      redirect_to listmycars_cars_path, notice: "Sorry please try again"
+    end
+  end
+
+  def cancel
+    if @booking.cancelled!
+      redirect_to booking_path(@booking.id), notice: "Booking ##{@booking.id} is cancelled!"
+    else
+      redirect_to booking_path(@booking.id), notice: "Sorry please try again"
     end
   end
 
   private
 
-  def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :car_id, :user_id)
-  end
-
   def booking_set
     @booking = Booking.find(params[:id])
   end
 
-  def approve_booking(booking)
-    message = ""
-    if booking.approved
-      message = "Booking is approved!"
-    else
-      message = "Failed to approve booking. Errors: #{booking.errors}"
-    end
-    redirect_to listmycars_cars_path, notice: message
-  end
-
-  def decline_booking(booking)
-    message = ""
-    if booking.declined
-      message = "Booking is declined!"
-    else
-      message = "Failed to decline booking. Errors: #{booking.errors}"
-    end
-    redirect_to listmycars_cars_path, notice: message
+  def booking_params
+    params.require(:booking).permit(:start_date, :end_date, :car_id, :user_id)
   end
 
   def belongs_to_user?
-    @booking.car.user == current_user || current_user.booking_ids.include?(@booking.id)
+    @booking.car.user == current_user || current_user.booking_ids.include?(@booking.id) # ??????????
   end
 end

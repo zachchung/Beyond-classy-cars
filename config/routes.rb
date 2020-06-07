@@ -6,16 +6,21 @@ Rails.application.routes.draw do
     get :listmycars, on: :collection
   end
 
-  resources :reviews, only: :destroy
-
-  resources :bookings, except: [:destroy] do
+  resources :bookings, except: [:destroy, :new] do
     resources :reviews, only: [:new, :create]
+    patch :approve, on: :member
+    # approve_booking PATCH  /bookings/:id/approve   bookings#approve
+    patch :decline, on: :member
+    # decline_booking PATCH  /bookings/:id/decline   bookings#decline
+    patch :cancel, on: :member
   end
-  patch '/booking/:id', to: 'bookings#modify', as: :modify_booking
 
+  resources :reviews, only: :destroy
+  # patch '/booking/:id', to: 'bookings#modify', as: :modify_booking
   # get "cars/search", to: "cars#search"
   # get "/users", to: redirect("/404")
 end
+
 
 # BELOW ROUTES GENERATED:
 # GET    /                 cars#index

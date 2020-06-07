@@ -48,7 +48,4 @@ class Car < ApplicationRecord
   def approved_bookings
     bookings.where(status: Booking::BOOKING_STATUS[:approved])
   end
-
-  # include PgSearch::Model
-  # multisearchable against: [:location]
 end

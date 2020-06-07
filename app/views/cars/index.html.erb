@@ -7,7 +7,7 @@
         <%= link_to "Search again", root_path, class: "text-center" %>
       <% else %>
         <% @cars.each do |car| %>
-          <li class="list-group-item"><%= render 'components/car_card', car: car %></li>
+          <li class="list-group-item"><%= render 'card', car: car %></li>
         <% end %>
       <% end %>
     </ul>
@@ -37,7 +37,7 @@
           <%= link_to "Search again", root_path, class: "text-center" %>
         <% else %>
           <% @cars.each do |car| %>
-            <li class="list-group-item"><%= render 'components/car_card', car: car %></li>
+            <li class="list-group-item"><%= render 'card', car: car %></li>
           <% end %>
         <% end %>
       </ul>

@@ -5,7 +5,7 @@
     <p>Congratulations, <%= @booking.user.first_name %>!</p>
     <p>You have booked a car in <%= @booking.car.location %> for <%= pluralize(@booking.duration, "day") %></p> <%# duration defines at model! %>
 
-    <%= render 'components/photo_carousel', car: @booking.car, width: "w-60" %>
+    <%= render 'shared/photo_carousel', car: @booking.car, width: "w-60" %>
   </div>
 
   <div class="col-12 col-lg-6">
@@ -19,6 +19,7 @@
       <p> <strong>Total price:</strong> $<%= @booking.booking_price %> </p>
       <p> <strong>Status:</strong> <%= @booking.status %> </p>
       <p> <strong>Itenerary #</strong>  <%= @booking.id %></p>
+      <%= link_to "Cancel booking", cancel_booking_path(@booking.id), method: :patch, data: { confirm: "Are you sure to cancel this booking?" }, class: "btn btn-outline-dark mb-3" %>
       <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
     </div>
   </div>

@@ -4,7 +4,7 @@
 <% unless @bookings.count.zero? %>
   <div class="row">
     <% @bookings.each do |booking| %>
-    <%= render partial: "bookings/card_booking", locals: {booking: booking} %>
+    <%= render partial: "card_renter", locals: {booking: booking} %>
     <% end %>
   </div>
 <% else %>

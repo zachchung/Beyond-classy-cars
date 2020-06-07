@@ -1,9 +1,9 @@
   <% status = ['cancelled','declined'] %>
-  <% color = status.include?(booking.status) ? "#ea907a" : "white"  %>
+  <% color = status.include?(booking.status) ? "#ea907a" : "green"  %>
   <% show_review = booking.review || status.include?(booking.status) %>
 
   <div class="col-12 col-md-6 col-lg-4 mb-3">
-  <div class="card p-3" style="border: 4px solid <%= color %>">
+  <div class="card p-3" style="border-radius: 8px; border: 1px solid <%= color %>">
     <div>
       <h4 class="card-title">
         <%= link_to booking.car.name, booking_path(booking) %>

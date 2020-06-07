@@ -1,13 +1,4 @@
 class Booking < ApplicationRecord
-  BOOKING_STATUS = {
-    pending: "pending",
-    renting: "renting",
-    confirmed: "confirmed",
-    cancelled: "cancelled",
-    returned: "returned",
-    declined: "declined"
-  }
-
   belongs_to :car
   belongs_to :user
   has_one :review
@@ -24,12 +15,16 @@ class Booking < ApplicationRecord
     end
   end
 
-  def approved
-    update(status: BOOKING_STATUS[:confirmed])
+  def approved!
+    update(status: "confirmed")
   end
 
-  def declined
-    update(status: BOOKING_STATUS[:declined])
+  def declined!
+    update(status: "declined")
+  end
+
+  def cancelled!
+    update(status: "cancelled")
   end
 
   def duration
