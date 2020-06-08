@@ -10,7 +10,7 @@ booking_status = %w[confirmed cancelled pending declined]
 # Sample Users
 puts "--- Generate User"
 
-user = User.create!(
+zach = User.create!(
   first_name: "Zach",
   last_name: "Chung",
   email: "zach@cars.com",
@@ -18,23 +18,21 @@ user = User.create!(
   password: "123123"
   )
 
-second_user = User.new(
+User.create!(
   first_name: "Erik",
   last_name: "Tran",
   email: "erik@cars.com",
   # address: "Brunswick, Melbourne, AUS",
+  password: "123123"
 )
-second_user.password = "abc123"
-second_user.save!
 
-third_user = User.new(
+User.create!(
   first_name: "Harshil",
   last_name: "Siyani",
   email: "harshil@cars.com",
   # address: "Melbourne, AUS",
+  password: "123123"
 )
-third_user.password = "abc123"
-third_user.save!
 puts "Finished generated User ---"
 
 
@@ -43,19 +41,17 @@ puts "--- Generate Car"
 users = User.all
 
 car = Car.create!(
-  name: "Le Wagon",
-  year: 2013,
-  seats: 11,
+  name: "Bentley EXP 100",
+  year: 2020,
+  seats: 2,
   price: rand(50..100) + rand.floor(2),
-  location: "LAX, Los Angeles",
-  user_id: users.sample.id,
+  location: "1221 W 3rd St, Los Angeles",
+  user: zach,
   )
-file1 = URI.open('https://vistapointe.net/images/vw-minibus-1.jpg')
-file2 = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/idbuzz1a-1503162755.jpg')
-file3 = URI.open('https://i.pinimg.com/originals/6c/5c/9e/6c5c9e9cab007bcd91e699d0be2bb179.jpg')
+file1 = URI.open('https://image.cnbcfm.com/api/v1/image/106010244-1562708838619bencon-1.jpg?v=1562708869')
+file2 = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/exp-100-gt-9th-july-13-1562756469.jpg')
 car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
-car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 
 car = Car.create!(
   name: "Batmobile",
@@ -63,11 +59,26 @@ car = Car.create!(
   seats: 1,
   price: rand(50..100) + rand.floor(2),
   location: "Rodeo Drive, Los Angeles",
-  user_id: users.sample.id,
+  user: zach, # can send user-object or user_id
   )
 file1 = URI.open('https://postmediadriving.files.wordpress.com/2018/02/tumbler-batmobile-replica.jpg')
 file2 = URI.open('https://rocketeers.gg/wp-content/uploads/2018/02/batmobile-89.jpg')
 file3 = URI.open('https://cdn.i-scmp.com/sites/default/files/d8/images/methode/2020/02/27/a5af0b88-58d2-11ea-b438-8452af50d521_image_hires_043702.jpg')
+car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
+car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
+car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
+
+car = Car.create!(
+  name: "Le Wagon",
+  year: 2013,
+  seats: 11,
+  price: rand(50..100) + rand.floor(2),
+  location: "LAX, Los Angeles",
+  user_id: users.sample.id, # can send user-object or user_id
+  )
+file1 = URI.open('https://vistapointe.net/images/vw-minibus-1.jpg')
+file2 = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/idbuzz1a-1503162755.jpg')
+file3 = URI.open('https://i.pinimg.com/originals/6c/5c/9e/6c5c9e9cab007bcd91e699d0be2bb179.jpg')
 car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
@@ -87,18 +98,6 @@ car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
 car.photos.attach(io: file3, filename: 'car3.jpeg', content_type: 'image/jpeg')
 
-car = Car.create!(
-  name: "Bentley EXP 100",
-  year: 2020,
-  seats: 2,
-  price: rand(50..100) + rand.floor(2),
-  location: "1221 W 3rd St, Los Angeles",
-  user_id: users.sample.id,
-  )
-file1 = URI.open('https://image.cnbcfm.com/api/v1/image/106010244-1562708838619bencon-1.jpg?v=1562708869')
-file2 = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/exp-100-gt-9th-july-13-1562756469.jpg')
-car.photos.attach(io: file1, filename: 'car1.jpeg', content_type: 'image/jpeg')
-car.photos.attach(io: file2, filename: 'car2.jpeg', content_type: 'image/jpeg')
 
 car = Car.create!(
   name: "Tesla Cybertruck",

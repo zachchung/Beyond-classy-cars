@@ -20,7 +20,13 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = Booking.where(user: current_user)
+    @bookings = Booking.where(user: current_user) unless params[:status].present? # if not filtered, show all
+
+    @bookings = Booking.where(user: current_user) if params[:status] == "1" # params returns a string
+    @bookings = Booking.where(user: current_user).where("status = 'confirmed' OR status = 'pending'") if params[:status] == "2"
+    @bookings = Booking.where(user: current_user).where("status = 'cancelled' OR status = 'declined'") if params[:status] == "3"
+    # @bookings = Booking.where(user: current_user).where("status = ? OR status = ?", "cancelled", "pending") if params[:status] == "3" # SQL injection
+    # @bookings = Booking.where(user: current_user).where(status: "confirmed") if params[:status] == "2" # For simple query
   end
 
   def show

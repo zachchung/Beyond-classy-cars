@@ -1,24 +1,25 @@
-  <% status = ['cancelled','declined'] %>
-  <% color = status.include?(booking.status) ? "#ea907a" : "green"  %>
-  <% show_review = booking.review || status.include?(booking.status) %>
+<%# from bookings#index %>
+<% status = ['cancelled','declined'] %>
+<% color = status.include?(booking.status) ? "#ea907a" : "green"  %>
+<% show_review = booking.review || status.include?(booking.status) %>
 
-  <div class="col-12 col-md-6 col-lg-4 mb-3">
-  <div class="card p-3" style="border-radius: 8px; border: 1px solid <%= color %>">
-    <div>
-      <h4 class="card-title">
-        <%= link_to booking.car.name, booking_path(booking) %>
-      </h4>
-      <div class="card-text text-muted mb-1">
-        <% rating = booking.review ? booking.review.rating : 0 %>
-        <%= rating_as_stars(rating) %>
-        <%= link_to "Write a review", new_booking_review_path(booking), class: "text-muted" unless show_review %>
+<div class="col-12 col-md-6 col-lg-4 mb-3">
+<div class="card p-3" style="border-radius: 8px; border: 1px solid <%= color %>">
+  <div>
+    <h4 class="card-title">
+      <%= link_to booking.car.name, booking_path(booking) %>
+    </h4>
+    <div class="card-text text-muted mb-1">
+      <% rating = booking.review ? booking.review.rating : 0 %>
+      <%= rating_as_stars(rating) %>
+      <%= link_to "Write a review", new_booking_review_path(booking), class: "text-muted" unless show_review %>
 
-      </div>
-      <div><strong>Owner:</strong> <%= booking.car.user.fullname %></div>
-      <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
-      <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
-      <div class="card-text mb-1">$ <%= booking.booking_price %></div>
-      <div class="card-text text-muted mb-1 py-2"><%= booking.status %> (#<%= booking.id %>)</div>
     </div>
+    <div><strong>Owner:</strong> <%= booking.car.user.fullname %></div>
+    <div class="card-text mt-2 mb-1"><%= formatted_date(booking.start_date) %></div>
+    <div class="card-text mb-1"><%= formatted_date(booking.end_date) %></div>
+    <div class="card-text mb-1">$ <%= booking.booking_price %></div>
+    <div class="card-text text-muted mb-1 py-2"><%= booking.status %> (#<%= booking.id %>)</div>
   </div>
-  </div>
+</div>
+</div>

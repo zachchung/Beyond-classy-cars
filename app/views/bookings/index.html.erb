@@ -1,6 +1,14 @@
 <div class="d-flex justify-content-between align-items-center">
   <h1 class="my-3">My bookings</h1>
 </div>
+
+<%= form_tag bookings_path, method: :get do %> <%# GET /bookings %>
+  <%# select's ID="status" -> params[:status] = "1" %>
+  <%= select_tag(:status, options_for_select([['All', 1], ['Upcoming', 2], ['Cancelled', 3]])) %>
+  <%= submit_tag "Filter", class: "btn btn-warning btn-sm my-3" %>
+<% end %>
+<%#= raise %>
+
 <% unless @bookings.count.zero? %>
   <div class="row">
     <% @bookings.each do |booking| %>
