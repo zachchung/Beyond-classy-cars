@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
     @booking.booking_price = (@booking.car.price * @booking.duration).round(2)
 
     if @booking.save
+      BookingMailer.confirmation(@booking).deliver_now
       redirect_to @booking
     else
       redirect_to car_path(@booking.car), alert: "Dates are not available!"
