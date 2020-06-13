@@ -23,6 +23,7 @@
       <div><%= formatted_date(booking.end_date) %></div>
       <div>$ <%= booking.booking_price %></div>
       <div class="card-text text-muted"><%= booking.status %> (#<%= booking.id %>) </div>
+      <%= link_to "Booking page", booking_path(booking) %>
     </div>
     <div class="d-flex justify-content-between">
       <%= link_to "Approve", approve_booking_path(booking.id), method: :patch, data: { confirm: "Sure to approve this booking?" }, class: "w-100 mr-2 btn btn-sm text-white btn-primary" %>
