@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
 
   def fullname
     name = "#{first_name} #{last_name}"
@@ -20,9 +20,9 @@ class User < ApplicationRecord
     Booking.joins(:car).where(cars: { user: self }).where(status: Booking::BOOKING_STATUS[:pending])
   end
 
-  # private
+  private
 
-  # def send_welcome_email
-  #   UserMailer.welcome(self).deliver_now
-  # end
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
 end
