@@ -8,7 +8,7 @@
 
   <%# POST /chatrooms/:chatroom_id/messages" %>
   <%= simple_form_for [ @chatroom, @message ], remote: true do |f| %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.name}" %>
+    <%= f.input :content, label: false, placeholder: "Message ##{@chatroom.index}" %>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
 </div>
