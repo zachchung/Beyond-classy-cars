@@ -38,7 +38,7 @@ gem 'geocoder'
 gem 'faker'
 gem 'pg_search', '~> 2.3.0'
 gem 'cloudinary', '~> 1.12.0'
-gem 'postmark-rails'
+gem 'postmark-rails' # not using it
 
 group :development, :test do
   gem 'dotenv-rails'
