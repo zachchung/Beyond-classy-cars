@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Booking #<%= @chatroom.index %></h1>
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>"> <%# for chatroom_channel.js %>
     <% @chatroom.messages.each do |message| %>
       <%= render "messages/message", message: message %>
     <% end %>
