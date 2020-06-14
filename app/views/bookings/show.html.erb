@@ -20,7 +20,7 @@
       <p> <strong>Status:</strong> <%= @booking.status %> </p>
       <p> <strong>Itenerary #</strong>  <%= @booking.id %></p>
       <p> <strong>Owner:</strong> <%= @booking.car.user.first_name %></p>
-      <%= link_to "Speak to host", chatroom_path(@chatroom) %> <%# chatrooms/show %>
+      <%= link_to "Speak to host", chat_booking_path(@booking) %> <%# /chat/bookings/:id %>
       <%= link_to "Cancel booking", cancel_booking_path(@booking.id), method: :patch, data: { confirm: "Are you sure to cancel this booking?" }, class: "btn btn-outline-dark mb-3" %>
       <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
     </div>

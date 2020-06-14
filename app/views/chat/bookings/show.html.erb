@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Booking #<%= @booking.id %></h1>
+  <div id="messages" data-chatroom-id="<%= @chatroom.id %>"> <%# for chatroom_channel.js %>
+    <% @chatroom.messages.each do |message| %>
+      <%= render "chat/messages/message", message: message %>
+    <% end %>
+  </div>
+
+  <%# POST   /chat/bookings/:booking_id/messages         chat/messages#create %>
+  <%# Let simple_form know this form is for message (message.content) %> <%# Need to make a custom path %>
+  <%= simple_form_for [@message], method: :post, url: chat_booking_messages_path(@booking) do |f| %> <%# ******* %>
+    <%= f.input :content, label: false, placeholder: "Message ##{@booking.id}" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+</div>
