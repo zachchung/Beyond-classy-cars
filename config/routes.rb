@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, except: [:destroy, :new] do
+    # resources :messages, only: [:index, :create]
     resources :reviews, only: [:new, :create]
     patch :approve, on: :member
     # approve_booking PATCH  /bookings/:id/approve   bookings#approve
@@ -19,6 +20,10 @@ Rails.application.routes.draw do
   # patch '/booking/:id', to: 'bookings#modify', as: :modify_booking
   # get "cars/search", to: "cars#search"
   # get "/users", to: redirect("/404")
+
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 end
 
 

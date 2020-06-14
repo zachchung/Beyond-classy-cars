@@ -1,0 +1,15 @@
+<!-- <div class="container">
+  <h1>#<%= @booking.car.user.first_name %></h1>
+  <div id="messages" data-booking-id="<%= @booking.id %>">
+    <% @booking.messages.each do |message| %>
+      <%= render "message", message:message %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [ @booking, @message ] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Message ##{@booking.car.user.first_name}" %>
+    <%= f.button :submit, class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+ -->

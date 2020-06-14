@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
 
     if @booking.save
       BookingMailer.confirmation(@booking).deliver_now
+      Chatroom.create(index: @booking.id)
       redirect_to @booking
     else
       redirect_to car_path(@booking.car), alert: "Dates are not available!"
@@ -31,6 +32,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @chatroom = Chatroom.find_by(index: params[:id])
     redirect_to bookings_path, notice: "Booking is not found." unless belongs_to_user?
     # so cannot see other user's bookings
   end
