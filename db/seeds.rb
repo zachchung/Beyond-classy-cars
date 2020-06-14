@@ -13,7 +13,7 @@ puts "--- Generate User"
 z = User.create!(
   first_name: "Zach",
   last_name: "Chung",
-  email: "zach@cars.com",
+  email: "chungchunluk@gmail.com",
   # address: "Melbourne, AUS",
   password: "123123",
   nickname: "zachchung"
@@ -22,7 +22,7 @@ z = User.create!(
 User.create!(
   first_name: "Erik",
   last_name: "Tran",
-  email: "erik@cars.com",
+  email: "one-seventyseven@hotmail.com",
   # address: "Brunswick, Melbourne, AUS",
   password: "123123",
   nickname: "ErikT"
@@ -31,7 +31,7 @@ User.create!(
 User.create!(
   first_name: "Harshil",
   last_name: "Siyani",
-  email: "harshil@cars.com",
+  email: "coursecreator404@gmail.com",
   # address: "Melbourne, AUS",
   password: "123123",
   nickname: "HS"
