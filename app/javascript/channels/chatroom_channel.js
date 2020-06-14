@@ -5,7 +5,7 @@ import consumer from "./consumer"; // needed for actioncable
 const initChatroomCable = () => {
   const messagesContainer = document.querySelector('#messages');
   if (messagesContainer) {
-    const id = messagesContainer.dataset.chatroomId;
+    const id = messagesContainer.dataset.chatroomId; // from chatrooms/show.html
 
     consumer.subscriptions.create({ channel: "ChatroomChannel", id: id }, { // to chatroom_channel.rb
       // When a broadcast is received
@@ -19,3 +19,17 @@ const initChatroomCable = () => {
 }
 
 export { initChatroomCable };
+
+
+
+// const initChatroomCable = () => {
+//   const messagesContainer = document.querySelector('#messages');
+//   if (messagesContainer) {
+//     const id = messagesContainer.dataset.chatroomId;
+
+//     id.addEventListener("submit", (event) => {
+//       const data = render_to_string(partial: "messages/message", locals: { message: @message })
+//       id.insertAdjacentHTML('beforeend', data);
+//     });
+//   };
+// }

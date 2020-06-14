@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class MessagesControllerTest < ActionDispatch::IntegrationTest
+class Chat::BookingsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
