@@ -10,7 +10,7 @@ class Chat::MessagesController < ApplicationController
     if @message.save
       # when got new msg, ask channel to SEND BROADCAST (so no need to refresh the page to see the msg)
       ChatroomChannel.broadcast_to(@chatroom,
-        render_to_string(partial: "messages/message", locals: { message: @message })
+        render_to_string(partial: "chat/messages/message", locals: { message: @message })
       ) # can't render twice in controller. Use render_to_string instead (eg. map- render_to_string "info-windows).
       redirect_to chat_booking_path(@booking, anchor: "message-#{@message.id}")
     else
