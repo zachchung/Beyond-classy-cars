@@ -1,15 +1,43 @@
-<div class="container">
-  <h1>Booking #<%= @booking.id %></h1>
-  <div id="messages" data-chatroom-id="<%= @chatroom.id %>"> <%# for chatroom_channel.js %>
-    <% @chatroom.messages.each do |message| %>
-      <%= render "chat/messages/message", message: message %>
-    <% end %>
+<div class="row">
+  <div class="col-12 col-md-9 col-lg-6 mx-auto">
+    <div class="card p-4" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2)">
+      <h1>Booking #<%= @booking.id %></h1>
+      <div id="messages" data-chatroom-id="<%= @chatroom.id %>" class="chatroom">
+        <% @chatroom.messages.each do |message| %>
+          <%= render "chat/messages/message", message: message %>
+        <% end %>
+      </div>
+
+      <%# POST   /chat/courses/:course_id/messages         chat/messages#create %>
+      <%= simple_form_for [@message], method: :post, url: chat_booking_messages_path(@booking), remote: true do |f| %>
+        <div class="d-flex mb-4" style="height:2.5rem">
+          <%= f.input :content, label: false, placeholder: "Message ##{@booking.id}", wrapper_html: {class: "flex-grow-1"} %>
+          <%= button_tag do %>
+            <i class='fas fa-paper-plane'></i> <%# "Send msg" icon %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= link_to "Back to Booking page", booking_path(@booking), class: "btn btn-outline-dark " %>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container">
+  <h1>Booking #<%#= @booking.id %></h1>
+  <div id="messages" data-chatroom-id="<%#= @chatroom.id %>"> <%## for chatroom_channel.js %>
+    <%# @chatroom.messages.each do |message| %>
+      <%#= render "chat/messages/message", message: message %>
+    <%# end %>
   </div>
 
-  <%# POST   /chat/bookings/:booking_id/messages         chat/messages#create %>
-  <%# Let simple_form know this form is for message (message.content) %> <%# Need to make a custom path %>
-  <%= simple_form_for [@message], method: :post, url: chat_booking_messages_path(@booking) do |f| %> <%# ******* %>
-    <%= f.input :content, label: false, placeholder: "Message ##{@booking.id}" %>
-    <%= f.button :submit, class: "btn btn-primary" %>
-  <% end %>
-</div>
+  <%## POST   /chat/bookings/:booking_id/messages         chat/messages#create %>
+  <%## Let simple_form know this form is for message (message.content) %> <%## Need to make a custom path %>
+  <%#= simple_form_for [@message], method: :post, url: chat_booking_messages_path(@booking) do |f| %> <%## ******* %>
+    <%#= f.input :content, label: false, placeholder: "Message ##{@booking.id}" %>
+    <%#= f.button :submit, class: "btn btn-primary" %>
+  <%# end %>
+</div> -->

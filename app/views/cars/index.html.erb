@@ -4,12 +4,12 @@
       <% if @cars.empty? %>
         <h4 class="mt-5 text-center"> Sorry, your favorite Classy is not here yet </h4>
         <h4 class="text-center"> Please try another location or model! </h4>
-        <%= link_to "Search again", root_path, class: "text-center" %>
       <% else %>
         <% @cars.each do |car| %>
           <li class="list-group-item"><%= render 'card', car: car %></li>
         <% end %>
       <% end %>
+      <%= link_to "Search again", root_path, class: "text-center" %>
     </ul>
   </div>
   <div id="map" class="" style="width: 100%; height: 100vh;"

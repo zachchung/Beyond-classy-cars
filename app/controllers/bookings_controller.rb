@@ -23,11 +23,11 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = Booking.where(user: current_user) unless params[:status].present? # if not filtered, show all
+    @bookings = Booking.where(user: current_user).order(start_date: :asc) unless params[:status].present? # if not filtered, show all
 
-    @bookings = Booking.where(user: current_user) if params[:status] == "1" # params returns a string
-    @bookings = Booking.where(user: current_user).where("status = 'confirmed' OR status = 'pending'") if params[:status] == "2"
-    @bookings = Booking.where(user: current_user).where("status = 'cancelled' OR status = 'declined'") if params[:status] == "3"
+    @bookings = Booking.where(user: current_user).order(start_date: :asc) if params[:status] == "1" # params returns a string
+    @bookings = Booking.where(user: current_user).where("status = 'confirmed' OR status = 'pending'").order(start_date: :asc) if params[:status] == "2"
+    @bookings = Booking.where(user: current_user).where("status = 'cancelled' OR status = 'declined'").order(start_date: :asc) if params[:status] == "3"
     # @bookings = Booking.where(user: current_user).where("status = ? OR status = ?", "cancelled", "pending") if params[:status] == "3" # SQL injection
     # @bookings = Booking.where(user: current_user).where(status: "confirmed") if params[:status] == "2" # For simple query
   end
@@ -35,6 +35,11 @@ class BookingsController < ApplicationController
   def show
     # @chatroom = Chatroom.find_by(index: params[:id]) # find by chatroom index = booking id / params[:id]
     redirect_to bookings_path, notice: "Booking is not found." unless belongs_to_user?
+    if @booking.car.user == current_user
+      @role = "owner"
+    else
+      @role = "renter"
+    end
     # so cannot see other user's bookings
   end
 

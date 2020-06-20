@@ -1,3 +1,5 @@
+<%# RENTER VIEW %>
+<% if @role == "renter" %>
 <div class="row">
   <div class="col-12 col-lg-6">
     <h1>Confirmation</h1>
@@ -19,17 +21,45 @@
       <p> <strong>Total price:</strong> $<%= @booking.booking_price %> </p>
       <p> <strong>Status:</strong> <%= @booking.status %> </p>
       <p> <strong>Itenerary #</strong>  <%= @booking.id %></p>
-      <p> <strong>Owner:</strong> <%= @booking.car.user.first_name %></p>
+      <p> <strong>Owner:</strong> <%= @booking.car.user.fullname %></p>
       <%= link_to "Speak to host", chat_booking_path(@booking) %> <%# /chat/bookings/:id %>
       <%= link_to "Cancel booking", cancel_booking_path(@booking.id), method: :patch, data: { confirm: "Are you sure to cancel this booking?" }, class: "btn btn-outline-dark mb-3" %>
       <%= link_to "Upcoming bookings", bookings_path , class: "btn btn-primary" %>
     </div>
   </div>
 </div>
+<% end %>
 
 
 <%# PLURALIZE %>
 <!-- <%#= @booking.car.seats %> seats -->
 <%#= pluralize(@booking.car.seats, "seat") %>
 
+<%# ======================================================================================================================== %>
+<%# OWNER VIEW %>
+<% if @role == "owner" %>
+  <div class="row">
+    <div class="col-12 col-lg-6 mx-auto">
+      <h1>Booking details</h1>
 
+      <p><%= @booking.user.fullname %> booked <%= @booking.car.name %> for <%= pluralize(@booking.duration, "day") %></p>
+      <div class="card mt-5 p-3 ">
+        <p><strong>Model:</strong> <%= link_to @booking.car.name, car_path(@booking.car) %> (<%= pluralize(@booking.car.seats, "seat") %>)</p>
+        <p><strong>Model Year:</strong> <%= @booking.car.year %></p>
+        <p><strong>Location:</strong> <%= @booking.car.location %></p>
+        <p><strong>Dates: </strong><%= @booking.start_date.strftime("%B %d, %Y") %> -> <%= @booking.end_date.strftime("%B %d, %Y") %></p>
+
+        <p> $<%= @booking.car.price %> x <%= @booking.duration %> days </p>
+        <p> <strong>Total price:</strong> $<%= @booking.booking_price %> </p>
+        <p> <strong>Status:</strong> <%= @booking.status %> </p>
+        <p> <strong>Itenerary #</strong>  <%= @booking.id %></p>
+        <p> <strong>Renter:</strong> <%= @booking.user.fullname %></p>
+        <%= link_to "Speak to customer", chat_booking_path(@booking) %>
+        <div class="d-flex">
+          <%= link_to "Approve", approve_booking_path(@booking.id), method: :patch, data: { confirm: "Sure to approve this booking?" }, class: "w-100 mr-2 btn btn-sm text-white btn-primary" %>
+          <%= link_to "Decline", decline_booking_path(@booking.id), method: :patch, data: { confirm: "Sure to decline this booking?" }, class: "w-100 btn btn-sm btn-outline-dark" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
