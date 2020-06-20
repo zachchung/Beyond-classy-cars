@@ -16,11 +16,11 @@
     <%= render 'shared/navbar' %>
 
     <% if current_page? root_path %> <%# not == ? %>
-      <div class='banner navbar-container-m'>
+      <div class='banner'>
     <% elsif current_page? cars_path %>
-      <div class='col-12 col-lg-10 mx-auto navbar-container-m'>
+      <div>
     <% else %>
-      <div class="container navbar-container-m">
+      <div class="container">
     <% end %>
       <%= yield %>
       <%= render 'shared/flashes' %>
