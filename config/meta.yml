@@ -1,0 +1,5 @@
+meta_product_name: "ClassyCars"
+meta_title: "ClassyCars - Book your next adventure with us"
+meta_description: "Project at Le Wagon. Developers: Zachary Chung, Erik Tran & Harshil Siyani"
+meta_image: "ferrari.png" # should exist in `app/assets/images/`
+twitter_account: "@product_twitter_account"   # required for Twitter Cards
