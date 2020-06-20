@@ -16,9 +16,9 @@
     <%= render 'shared/navbar' %>
 
     <% if current_page? root_path %> <%# not == ? %>
-      <div class='banner'>
+      <div class='banner'> <%# no container %>
     <% elsif current_page? cars_path %>
-      <div>
+      <div> <%# no container %>
     <% else %>
       <div class="container">
     <% end %>

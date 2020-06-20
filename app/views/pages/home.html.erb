@@ -1,5 +1,5 @@
 <!-- <div class = "row"> -->
-  <div class="col-12 col-md-10 col-lg-8 mx-auto p-5">
+  <div class="col-12 col-md-10 col-lg-8 mx-auto pt-5">
     <div class = "card mb-5 p-5 b-rad"> <h1><b>BOOK YOUR NEXT ADVENTURE WITH US</b></h1> </div>
 
     <%# POST /cars %> <%# GO TO => /cars?location=losangeles&model=bmw&commit=Search %>
@@ -10,12 +10,12 @@
         <%= text_field_tag :location,
           params[:location],
           class: "form-control",
-          placeholder: "Enter Location" %>
+          placeholder: "Location" %>
         <%# search by model %>
         <%= text_field_tag :model,
           params[:model],
           class: "form-control",
-          placeholder: "Enter model" %>
+          placeholder: "Model" %>
 
         <%= submit_tag "Search", class: "btn btn-warning" %>
       </div>
