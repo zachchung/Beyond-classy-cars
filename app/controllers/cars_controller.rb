@@ -29,14 +29,15 @@ class CarsController < ApplicationController
     @geocoded_cars = Car.geocoded # returns cars with coordinates (instead of- @cars = Car.all)
 
     # From root_path (/cars?location=losangeles&model=bmw&commit=Search)
+
     location = params[:location]
     model = params[:model]
 
     if location.present? && model.present? # both location & model search
       @cars = @geocoded_cars.search_by_name_and_location(location).search_by_name_and_location(model)
-    elsif location.present? && model.empty? # only location search
+    elsif location.present? && model.nil? # only location search
       @cars = @geocoded_cars.search_by_name_and_location(location)
-    elsif location.empty? && model.present? # only model search
+    elsif location.nil? && model.present? # only model search
       @cars = @geocoded_cars.search_by_name_and_location(model)
     else # if no search
       @cars = @geocoded_cars

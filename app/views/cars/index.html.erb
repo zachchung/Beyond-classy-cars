@@ -2,8 +2,8 @@
   <div class="cars-list d-none d-sm-block">
     <ul class="list-group list-group-flush">
       <% if @cars.empty? %>
-        <h4 class="mt-5 text-center"> Sorry, your favorite Classy is not here yet </h4>
-        <h4 class="text-center"> Please try another location or model! </h4>
+        <h4 class="mt-5 text-center pr-3"> Sorry, your favorite Classy is not here yet </h4>
+        <h4 class="text-center pr-3"> Please try another location or model! </h4>
       <% else %>
         <% @cars.each do |car| %>
           <li class="list-group-item"><%= render 'card', car: car %></li>
