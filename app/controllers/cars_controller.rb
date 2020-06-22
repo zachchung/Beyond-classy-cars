@@ -35,9 +35,9 @@ class CarsController < ApplicationController
 
     if location.present? && model.present? # both location & model search
       @cars = @geocoded_cars.search_by_name_and_location(location).search_by_name_and_location(model)
-    elsif location.present? && model.nil? # only location search
+    elsif location.present? && !model.present? # only location search
       @cars = @geocoded_cars.search_by_name_and_location(location)
-    elsif location.nil? && model.present? # only model search
+    elsif !location.present? && model.present? # only model search # .nil? / .empty? give errors... need to use !.present?
       @cars = @geocoded_cars.search_by_name_and_location(model)
     else # if no search
       @cars = @geocoded_cars
