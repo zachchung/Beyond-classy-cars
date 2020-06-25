@@ -39,6 +39,7 @@ gem 'faker'
 gem 'pg_search', '~> 2.3.0'
 gem 'cloudinary', '~> 1.12.0'
 gem 'postmark-rails' # not using it
+gem 'omniauth-facebook' # FB 3rd-party login
 
 group :development, :test do
   gem 'dotenv-rails'

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' } # <<< FB 3rd-party login
   root to: "pages#home"
 
   resources :cars do
