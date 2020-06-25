@@ -19,7 +19,7 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
     @booking = Booking.new
     @reviews = @car.reviews
-    @markers = markers_for_one_car(@car)
+    @markers = markers_for_one_car(@car) # 1 car/ info_window
   # alert & redirect if page not found
   rescue ActiveRecord::RecordNotFound => e
     redirect_to cars_path, notice: "Could not find the car you requested."
@@ -28,8 +28,7 @@ class CarsController < ApplicationController
   def index
     @geocoded_cars = Car.geocoded # returns cars with coordinates (instead of- @cars = Car.all)
 
-    # From root_path (/cars?location=losangeles&model=bmw&commit=Search)
-
+    # From search form @root_path (/cars?location=losangeles&model=bmw&commit=Search) ================
     location = params[:location]
     model = params[:model]
 
@@ -42,8 +41,12 @@ class CarsController < ApplicationController
     else # if no search
       @cars = @geocoded_cars
     end
+    # End of search => returns @cars ====================================================================
 
-    @markers = markers_for_many_cars(@cars)
+    # For info_window (need all locations):
+    @locations = []
+    @cars.each { |car| @locations << car.location } # get all locations (instead of cars)
+    @markers = markers_for_many_locations(@locations) # 1 location/ info_window
   end
 
   def destroy
@@ -73,22 +76,25 @@ class CarsController < ApplicationController
 
   private
 
-  def markers_for_many_cars(cars)
-    cars.map do |car|
+  # For "/cars": 1 location/ info_window:
+  def markers_for_many_locations(locations)
+    locations.map do |location|
+      cars = Car.where(location: location) # 1 location can have many cars
       {
-        lat: car.latitude,
-        lng: car.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
+        lat: cars.first.latitude,
+        lng: cars.first.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { cars: cars }), # send "cars" (array) to info_window
         image_url: helpers.asset_url('ferrari.png')
       }
     end
   end
 
+  # For "/car/15": 1 car/ info_window:
   def markers_for_one_car(car)
     [{
       lat: car.latitude,
       lng: car.longitude,
-      infoWindow: render_to_string(partial: "info_window", locals: { car: car }),
+      infoWindow: render_to_string(partial: "info_window", locals: { car: car }), # send "car" (object) to info_window
       image_url: helpers.asset_url('ferrari.png')
     }] # need to pass an array [] here (coz mapbox.js expect markers to be an array -> markers.forEach)!!!!
   end

@@ -138,10 +138,10 @@ puts "Finished Car 5"
 
 # Sample Cars  ================================================
 users = User.all
-10.times do
+50.times do
   car = Car.new(
     name: "#{Faker::Vehicle.make_and_model}",
-    year: rand(1900..1980),
+    year: rand(2000..2020),
     seats: rand(2..6),
     price: rand(50..100) + rand.floor(2),
     location: "#{suburbs.sample}, Los Angeles"

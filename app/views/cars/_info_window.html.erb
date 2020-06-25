@@ -1,2 +1,16 @@
-<h4><%= link_to car.name, car_path(car) %></h4>
-<p><%= car.location %></p>
+<%# Two diff variables "cars" OR "car" from cars_controller, need to create separate actions %>
+
+<%# If variable is "cars" (array) %> <%# For cars#index %>
+<% if defined?(cars) %> <%# if "cars" is defined/existed %> <%# Can't use ".exist?" if variable is undefined %>
+  <% cars.each do |car| %>
+    <h6><%= link_to car.name, car_path(car) %></h6>
+    <p><%= car.location %></p>
+    <hr>
+  <% end %>
+<% end %>
+
+<%# If variable is "car" (object) %> <%# For cars#show %>
+<% if defined?(car) %> <%# if "car" is defined/existed %>
+  <h6><%= link_to car.name, car_path(car) %></h6>
+  <p><%= car.location %></p>
+<% end %>
