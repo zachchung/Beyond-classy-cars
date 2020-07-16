@@ -2,7 +2,7 @@ class Booking < ApplicationRecord
   belongs_to :car
   belongs_to :user
   has_one :review, dependent: :destroy # review will be destroyed upon booking destroy
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
 
   validates :start_date, :end_date, presence: true
   validate :date_available?, on: :create
