@@ -116,6 +116,8 @@ GEM
       activesupport (>= 5.0.0)
     json (2.3.0)
     jwt (2.2.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -290,7 +292,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap (>= 1.4.2)
   byebug
-  capybara (>= 2.15)
+  capybara
   cloudinary (~> 1.12.0)
   devise
   dotenv-rails
@@ -298,6 +300,7 @@ DEPENDENCIES
   font-awesome-sass
   geocoder
   jbuilder (~> 2.7)
+  launchy
   listen (~> 3.2)
   omniauth-facebook
   pg (>= 0.18, < 2.0)
@@ -316,7 +319,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
-  webdrivers
+  webdrivers (~> 4.0)
   webpacker (~> 4.0)
 
 RUBY VERSION
